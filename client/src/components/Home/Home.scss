@@ -1,0 +1,37 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .container {
+    padding: 100px;
+    background-color: rgb(65, 65, 65);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2,
+    h4 {
+      margin-bottom: 20px;
+    }
+    .joinRoom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      input,
+      button {
+        margin-top: 0;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}
