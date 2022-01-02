@@ -1,9 +1,17 @@
 import "./App.scss";
-import Join from "./components/Join/Join";
+import Home from "./components/Home/Home";
+import VideoScreen from "./components/Video/VideoScreen";
+import { socket, socketContext } from "./socket";
+import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Join />
+      <socketContext.Provider value={socket}>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/room/:roomid" element={<VideoScreen />} />
+        </Routes>
+      </socketContext.Provider>
     </div>
   );
 }
