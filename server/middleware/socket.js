@@ -8,5 +8,6 @@ io.use((socket, next) => {
 });
 
 io.on(`connection`, (socket) => {
+  console.log(socket.id, " joined");
   socketRoute(socket);
 });
