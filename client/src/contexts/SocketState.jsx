@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { socketContext as SocketContext } from "./socketContext";
-import { socket } from "./socketConfig";
+import { socket, baseURL } from "./socketConfig";
 
 const SocketState = (props) => {
   const [data, setData] = useState({ user: null, room: null });
@@ -10,7 +10,6 @@ const SocketState = (props) => {
   };
   const updateRoom = (room) => {
     setData((prevData) => ({ ...prevData, room: room }));
-    console.log("function called");
   };
 
   return (
@@ -18,7 +17,7 @@ const SocketState = (props) => {
       value={{
         user: data.user,
         room: data.room,
-        socketid: socket.id,
+        socket,
         updateUser,
         updateRoom,
       }}
