@@ -27,3 +27,4 @@ yarn-error.log*
 .tmp/
 client/package-lock.json
 client/.gitignore
+server/package-lock.json
