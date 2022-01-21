@@ -1,7 +1,26 @@
-import React from "react";
-
+import {
+  F0FContainer,
+  TitleWrapper,
+  Container,
+  Title,
+  ButtonsContainer,
+  ButtonLeft,
+  ButtonRight,
+} from "./styles/PageNotFound.styled";
 const PageNotFound = () => {
-  return <div>404</div>;
+  return (
+    <F0FContainer>
+      <Container>
+        <TitleWrapper>
+          <Title>Page not Found</Title>
+        </TitleWrapper>
+        <ButtonsContainer>
+          <ButtonLeft>Home Page</ButtonLeft>
+          <ButtonRight>Create Room</ButtonRight>
+        </ButtonsContainer>
+      </Container>
+    </F0FContainer>
+  );
 };
 
 export default PageNotFound;

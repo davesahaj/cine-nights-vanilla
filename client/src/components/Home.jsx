@@ -1,13 +1,34 @@
-import { HomeContainer } from "./styles/Home.styled";
-import { useContext } from "react";
-import { socketContext } from "../contexts/socketContext";
+import {
+  ButtonLeft,
+  ButtonRight,
+  ButtonsContainer,
+  Container,
+  HomeContainer,
+  SubTitle,
+  SubTitleWrapper,
+  Title,
+  TitleWrapper,
+} from "./styles/Home.styled";
 
 const Home = () => {
-  const socket = useContext(socketContext);
   return (
     <HomeContainer>
-      <h2>welcome, {socket.user ? socket.user : "Guest"}</h2>
-      <button>Create a Room</button>
+      <Container>
+        <TitleWrapper>
+          <Title>Title</Title>
+        </TitleWrapper>
+        <SubTitleWrapper>
+          <SubTitle>
+            this is a sample line with number 1.
+            <br />
+            this is a sample line with number 2.
+          </SubTitle>
+        </SubTitleWrapper>
+        <ButtonsContainer>
+          <ButtonLeft>Get Started</ButtonLeft>
+          <ButtonRight>Learn More</ButtonRight>
+        </ButtonsContainer>
+      </Container>
     </HomeContainer>
   );
 };
