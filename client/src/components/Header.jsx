@@ -4,7 +4,7 @@ import { HeaderContainer } from "./styles/Header.styled";
 const Header = () => {
   return (
     <HeaderContainer>
-      <Link to="/">Home</Link> |<Link to="/create">Create Room</Link> |
+      <Link to="/">Home</Link> |<Link to="/room/new">Create Room</Link> |
       <Link to="/room/3wd">Join Room</Link> |<Link to="/asdsad">404</Link>
     </HeaderContainer>
   );
