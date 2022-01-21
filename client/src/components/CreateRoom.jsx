@@ -3,9 +3,9 @@ import { CreateRoomContainer } from "./styles/CreateRoom.styled";
 import { socketContext } from "../contexts/socketContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserModal from "./UserModal";
 
 const CreateRoom = () => {
-
   const navigate = useNavigate();
   const baseURL = `http://localhost:4000`;
   const roomRef = useRef(null);
@@ -19,7 +19,7 @@ const CreateRoom = () => {
     formData.append("username", user.user);
     formData.append("userid", user.socket.id);
     const headers = { "Content-Type": "multipart/form-data" };
-    
+
     axios
       .post(baseURL + "/create", formData, { headers })
       .then((res) => {
@@ -36,17 +36,24 @@ const CreateRoom = () => {
   };
 
   const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0])
-  }
+    setSelectedFile(event.target.files[0]);
+  };
 
-  return (
+  return !user.user ? (
+    <UserModal />
+  ) : (
     <CreateRoomContainer>
       <h1>Welcome {user.user}</h1>
 
       <h2>Enter Room Name:</h2>
       <input type="text" ref={roomRef} />
       <h2>Select Video File to Upload:</h2>
-      <input name="sampleFile" type="file" onChange={handleFileSelect} ref={fileRef} />
+      <input
+        name="sampleFile"
+        type="file"
+        onChange={handleFileSelect}
+        ref={fileRef}
+      />
       <button onClick={createRoom}>Create Room</button>
     </CreateRoomContainer>
   );
