@@ -2,10 +2,14 @@ import { useState } from "react";
 import { socketContext as SocketContext } from "./socketContext";
 import { socket, baseURL } from "./socketConfig";
 
-const SocketState = (props) => {
-  const [data, setData] = useState({ user: null, room: null });
+const SocketProvider = (props) => {
+  const [data, setData] = useState({
+    user: window.localStorage.getItem("CINEUSER"),
+    room: null,
+  });
 
   const updateUser = (name) => {
+    window.localStorage.setItem("CINEUSER", name);
     setData((prevData) => ({ ...prevData, user: name }));
   };
   const updateRoom = (room) => {
@@ -27,4 +31,4 @@ const SocketState = (props) => {
   );
 };
 
-export default SocketState;
+export default SocketProvider;
