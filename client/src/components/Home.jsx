@@ -15,13 +15,20 @@ const Home = () => {
     <HomeContainer>
       <Container>
         <TitleWrapper>
-          <Title>Title</Title>
+          <Title>Cine-nights</Title>
         </TitleWrapper>
         <SubTitleWrapper>
           <SubTitle>
-            this is a sample line with number 1.
+            Cine nights where you can Enjoy content with your binge-watch buddies, no matter how far away they are from you.
             <br />
-            this is a sample line with number 2.
+            <br />
+            1 - Create rooms and upload videos. ---- Screenshot 1
+            <br />
+            2 - Invite your binge-watch buddies. ---- Screenshot 2
+            <br />
+            3 - Synchronized video streaming While chatting. ---- Screenshot 3
+            <br />
+            4 - Enjoy adaptive streaming. ---- Screenshot 4
           </SubTitle>
         </SubTitleWrapper>
         <ButtonsContainer>
