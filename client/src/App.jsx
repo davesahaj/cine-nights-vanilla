@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import VideoScreen from "./components/VideoScreen";
+import Room from "./components/Room";
 import PageNotFound from "./components/PageNotFound";
 import CreateRoom from "./components/CreateRoom";
 import Header from "./components/Header.jsx";
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/room/new" element={<CreateRoom />} />
-          <Route exact path="/room/:roomid" element={<VideoScreen />} />
+          <Route exact path="/room/:roomid" element={<Room />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </ThemeProvider>
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
