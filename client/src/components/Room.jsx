@@ -14,6 +14,8 @@ import {
   MessageSender,
   RecieveMessageContainer,
   MessageText,
+  InfoMessageContainer,
+  InfoMessageText,
   SendMessageContainer,
   RecieveMessageText,
   SendMessageText,
@@ -21,22 +23,20 @@ import {
 import VideoScreen from "./VideoScreen";
 
 const Room = () => {
-  const messageRef = React.createRef();
   const user = useContext(socketContext);
   let params = useParams();
 
-  const [messageList, setMessageList] = useState([
-    { userName: "Modiji", messageText: "test test" },
-    {
-      userName: "dave",
-      messageText: "test test test test test test test test test test",
-    },
-  ]);
+  const [messageList, setMessageList] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState("");
 
   const ChatMessage = ({ message }) => {
     const type = user.user === message.userName ? "send" : "recieve";
 
-    return type === "recieve" ? (
+    return message.isInfo ? (
+      <InfoMessageContainer>
+        <InfoMessageText>{message.messageText}</InfoMessageText>
+      </InfoMessageContainer>
+    ) : type === "recieve" ? (
       <RecieveMessageContainer>
         <MessageSender>{message.userName}</MessageSender>
         <RecieveMessageText>{message.messageText}</RecieveMessageText>
@@ -50,6 +50,7 @@ const Room = () => {
 
   useEffect(() => {
     if (!user.socket) return;
+
     user.socket.emit("joinRoom", { username: user.user, room: params.roomid });
     user.socket.on(`messageFromServer`, (message) => {
       setMessageList((currentMessages) => [...currentMessages, message]);
@@ -61,7 +62,7 @@ const Room = () => {
   }, []);
 
   function sendMessage() {
-    const textToSend = messageRef.current.value;
+    const textToSend = currentMessage;
     if (textToSend) {
       user.socket.emit(
         `messageFromClient`,
@@ -69,6 +70,8 @@ const Room = () => {
         function callback(res) {
           if (!res.delivered) {
             console.log("error");
+          } else {
+            setCurrentMessage("");
           }
           // TODO: add error if message is not delivered
         }
@@ -93,8 +96,9 @@ const Room = () => {
           <ChatEmoji>:-)</ChatEmoji>
           <ChatInputText
             type="text"
-            ref={messageRef}
+            onChange={(e) => setCurrentMessage(e.target.value)}
             placeholder="Type a message..."
+            value={currentMessage}
           />
           <ChatButton onClick={sendMessage}>Send</ChatButton>
         </ChatInputContainer>
