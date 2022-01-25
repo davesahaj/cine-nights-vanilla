@@ -1,6 +1,11 @@
 const app = require("./app"); // express app
+const dotenv = require("dotenv");
 const PORT = 4000; // port number
+
 const connectDatabase = require("./config/database"); //DB connection
+dotenv.config({ path: "./config/config.env" });
+connectDatabase(); // Initiate DB connection
+
 const server = require("http").Server(app); // node server
 
 //socket IO
@@ -9,8 +14,6 @@ global.io = require("socket.io")(server, {
   cors: { methods: ["GET", "POST"] },
 });
 require("./middleware/socket"); // Socket IO middleware
-
-connectDatabase(); // Initiate DB connection
 
 //Start Server
 server.listen(PORT, () => {
