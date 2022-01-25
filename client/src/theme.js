@@ -1,6 +1,8 @@
 const dark = {
-  primary: "#494949",
-  secondary: "#292929",
+  primary: "#4717f6",
+  secondary: "#0e0b16",
+  accent: "#a239ca",
+  textAccent: "#e7dfdd",
 
   button: {
     textColor: "#ffffff",
