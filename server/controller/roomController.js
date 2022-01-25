@@ -1,13 +1,13 @@
 const Room = require("../models/roomModel");
 const ErrorHandler = require("../utils/errorHandler");
-const fileUpload = require('express-fileupload');
-const path = require('path');
+const fileUpload = require("express-fileupload");
+const path = require("path");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
 const crypto = require("crypto");
 const { createUser } = require("../utils/users");
 const { createHLS } = require("../services/convertVideoService");
 
-app.use(fileUpload({ createParentPath : true }));
+app.use(fileUpload({ createParentPath: true }));
 
 //create a room
 function randomValueHex(len) {
@@ -21,7 +21,7 @@ function randomValueHex(len) {
 exports.createRoom = catchAsyncErrors(async (req, res, next) => {
   // const socket = req.app.get("socketio");
   // socket.emit("message", { txt: "createRoom socket working!" });
-  
+
   let uploadFile;
   let uploadPath;
   const { username, userid } = req.body;
@@ -40,17 +40,23 @@ exports.createRoom = catchAsyncErrors(async (req, res, next) => {
   }
 
   uploadFile = req.files.selectedFile;
-  uploadPath = path.join(__dirname, '../uploads/' + roomName + '/' + uploadFile.name);
+  uploadPath = path.join(
+    __dirname,
+    "../uploads/" + roomName + "/" + uploadFile.name
+  );
 
-  uploadFile.mv(uploadPath, function(err) {
-    if (err) {return res.status(500).send(err);}
+  uploadFile.mv(uploadPath, function (err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
   });
 
   await createHLS(roomName, uploadFile.name);
 
-  res.status(200)
-  .cookie("userid", user.id, options)
-  .json({ success: true, room: `${room.name}` });
+  res
+    .status(200)
+    .cookie("userid", user.id, options)
+    .json({ success: true, room: `${room.name}` });
 });
 
 // join a room

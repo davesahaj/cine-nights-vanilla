@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const VideoScreenContainer = styled.div`
-  background-color: #0f171e;
+  background-color: ${(props) => props.theme.secondary};
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -26,6 +26,21 @@ export const ChatWindow = styled.div`
   height: 90%;
   padding: 1vmax;
 `;
+
+export const InfoMessageContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+
+  margin-top: 1vmax;
+`;
+export const InfoMessageText = styled.span`
+  color: ${(props) => props.theme.textAccent};
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+`;
+
 export const RecieveMessageContainer = styled.div`
   min-height: 3vmax;
   display: flex;
@@ -43,7 +58,7 @@ export const MessageSender = styled.h4`
   color: #50616b;
   width: 100%;
   font-size: smaller;
-  background-color: #0f171e;
+  background-color: inherit;
   padding-bottom: 0.2vmax;
 `;
 export const SendMessageText = styled.p`

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const UserModalWrapper = styled.div`
   display: Flex;
   align-items: center;
@@ -76,8 +75,4 @@ export const ConfirmButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-export const ConfirmButton = styled.button`
-  height: 60%;
-  width: 30%;
 `;
