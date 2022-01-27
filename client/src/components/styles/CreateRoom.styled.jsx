@@ -34,7 +34,7 @@ export const InputDataWrapper = styled.div`
 
 export const InputData = styled.div`
   display: flex;
-
+  margin: 10px;
   /* border: 1px solid blue; */
   flex-direction: column;
   width: 100%;

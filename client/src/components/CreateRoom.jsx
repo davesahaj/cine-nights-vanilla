@@ -9,6 +9,7 @@ import {
 import Title from "./styles/base/Title";
 
 import Button from "./styles/base/Button";
+import FileDropzone from "./styles/base/FileDropzone";
 
 import { Fade } from "react-reveal";
 import { socketContext } from "../contexts/socketContext";
@@ -49,10 +50,6 @@ const CreateRoom = () => {
       });
   };
 
-  const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   return !user.user ? (
     <UserModal />
   ) : (
@@ -67,12 +64,8 @@ const CreateRoom = () => {
             </InputData>
             <InputData>
               <span>Select file to upload</span>
-              <input
-                name="sampleFile"
-                type="file"
-                onChange={handleFileSelect}
-                ref={fileRef}
-              />
+              <FileDropzone setSelectedFile={setSelectedFile} />
+              <span> {selectedFile?.name} </span>
             </InputData>
           </InputDataWrapper>
           <ButtonContainer>

@@ -21,6 +21,7 @@ import {
   SendMessageText,
 } from "./styles/Room";
 import VideoScreen from "./VideoScreen";
+import EmojiPicker from "./EmojiPicker";
 
 const Room = () => {
   const user = useContext(socketContext);
@@ -28,6 +29,11 @@ const Room = () => {
 
   const [messageList, setMessageList] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = React.useState(false)
+
+  const onClickEmojiPicker = () => {
+    showEmojiPicker? setShowEmojiPicker(false) : setShowEmojiPicker(true) ;
+  }
 
   const ChatMessage = ({ message }) => {
     const type = user.user === message.userName ? "send" : "recieve";
@@ -92,8 +98,19 @@ const Room = () => {
             <ChatMessage message={message} key={index} />
           ))}
         </ChatWindow>
+        { showEmojiPicker ? (
+          <EmojiPicker 
+          currentMessage={currentMessage} 
+          setCurrentMessage={setCurrentMessage} 
+          setShowEmojiPicker={setShowEmojiPicker}
+          />
+        ) : (
+          null
+        )}
         <ChatInputContainer>
-          <ChatEmoji>:-)</ChatEmoji>
+          <ChatEmoji>
+            <ChatButton onClick={onClickEmojiPicker}>:)</ChatButton>
+          </ChatEmoji>
           <ChatInputText
             type="text"
             onChange={(e) => setCurrentMessage(e.target.value)}
